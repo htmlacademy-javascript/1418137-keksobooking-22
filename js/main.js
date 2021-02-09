@@ -12,7 +12,7 @@ const createRandonLengthArray = (basicArray) => {
   const randomLength = getRandomNumber(1, basicArray.length);
   const randonLengthArray = [];
 
-  for (i = 1; i <= randomLength; i++) {
+  for (let i = 1; i <= randomLength; i++) {
     const getRandomItem = () => {
       const randomItem = basicArray[getRandomNumber(0, basicArray.length - 1)];
 
@@ -27,7 +27,7 @@ const createRandonLengthArray = (basicArray) => {
       }
     };
     getRandomItem();
-  };
+  }
   return randonLengthArray;
 };
 
@@ -37,7 +37,7 @@ const createTemporaryData = () => {
 
   const randomLocation = {
     x: getRandomNumber(35.65000, 35.70000, 5),
-    y: getRandomNumber(139.70000, 139.80000, 5).toFixed(5)
+    y: getRandomNumber(139.70000, 139.80000, 5).toFixed(5),
   };
 
   const allTypeHouse = ['palace', 'flat', 'house', 'bungalow'];
@@ -49,12 +49,11 @@ const createTemporaryData = () => {
 
   const createRandomAuthor = (a = 1, b = 8) => {
     const author = {
-      avatar: 'img/avatars/user0' + (Math.floor(Math.random() * (b - a + 1)) + a) + '.png'
+      avatar: 'img/avatars/user0' + (Math.floor(Math.random() * (b - a + 1)) + a) + '.png',
     }
     return author;
   };
 
-  console.log(createRandomAuthor());
   temporaryData.push(createRandomAuthor());
 
 
@@ -72,12 +71,11 @@ const createTemporaryData = () => {
       checkout: getRandomNumber(12, 14) + ':00',
       features: createRandonLengthArray(allFeatures),
       description: 'Прекрасный вид на набережную',
-      photos: createRandonLengthArray(allPhotos)
+      photos: createRandonLengthArray(allPhotos),
     }
     return offer;
   };
 
-  console.log(createOffer());
   temporaryData.push(createOffer());
 
 
@@ -85,13 +83,12 @@ const createTemporaryData = () => {
 
   const location = {
     x: randomLocation.x,
-    y: randomLocation.y
+    y: randomLocation.y,
   };
 
-  console.log(location);
   temporaryData.push(location);
 
   return temporaryData;
 }
 
-console.log(createTemporaryData());
+createTemporaryData();
