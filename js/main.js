@@ -5,88 +5,76 @@ const getRandomNumber = (a = 0, b = 0, lengthRemainder = 0) => {
   if (min < 0) {
     return NaN;
   }
-  return (Math.floor(Math.random() * (max - min + 1)) + min) / remainder;
+
+  return +(((Math.floor(Math.random() * (max - min + 1)) + min) / remainder).toFixed(lengthRemainder));
 };
 
-const createRandonLengthArray = (basicArray) => {
-  const randomLength = getRandomNumber(1, basicArray.length);
-  const randonLengthArray = [];
 
-  for (let i = 1; i <= randomLength; i++) {
-    const getRandomItem = () => {
-      const randomItem = basicArray[getRandomNumber(0, basicArray.length - 1)];
-
-      const isNotSimilarItem = randonLengthArray.every((value) => {
-        return value !== randomItem;
-      });
-
-      if (isNotSimilarItem === true) {
-        randonLengthArray.push(randomItem);
-      } else {
-        getRandomItem();
-      }
-    };
-    getRandomItem();
+// Ничего получше я не смогла придумать...
+const getAvatarRandomNumber = (a, b) => {
+  const AvatarNumber = getRandomNumber(a, b);
+  if (AvatarNumber < 10) {
+    return '0' + AvatarNumber;
+  } else {
+    return AvatarNumber;
   }
-  return randonLengthArray;
+};
+
+const getRandomElemets = (array, min = 1) => {
+  // Исправила min на 1, потому что у нас на выходе должен быть хотя бы 1 элемент
+  const randomLength = getRandomNumber(min, array.length);
+  const newArray = [...array].sort(() => Math.random() - 0.5);
+  return newArray.slice(0, randomLength);
 };
 
 
-const createTemporaryData = () => {
-  const temporaryData = [];
-
+const createAnnouncement = () => {
   const randomLocation = {
     x: getRandomNumber(35.65000, 35.70000, 5),
-    y: getRandomNumber(139.70000, 139.80000, 5).toFixed(5),
+    y: getRandomNumber(139.70000, 139.80000, 5),
   };
 
   const allTypeHouse = ['palace', 'flat', 'house', 'bungalow'];
   const allFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   const allPhotos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
 
+  const announcement = {
+    author: {
+      avatar: `img/avatars/user${getAvatarRandomNumber(1, 12)}.png`,
+    },
 
-  // Первый объект: Author
-
-  const createRandomAuthor = (a = 1, b = 8) => {
-    const author = {
-      avatar: 'img/avatars/user0' + (Math.floor(Math.random() * (b - a + 1)) + a) + '.png',
-    }
-    return author;
-  };
-
-  temporaryData.push(createRandomAuthor());
-
-
-  // Второй объект: Offer
-
-  const createOffer = () => {
-    const offer = {
+    offer: {
       title: 'Создайте объявление',
-      address: 'Адрес: ' + randomLocation.x + ' и ' + randomLocation.y,
-      price: getRandomNumber(0, 30000),
-      type: allTypeHouse[getRandomNumber(0, allTypeHouse.length - 1)],
+      address: `${randomLocation.x}, ${randomLocation.y}`,
+      price: getRandomNumber(3000, 20000),
+      type: getRandomElemets(allTypeHouse, 1).pop(),
       rooms: getRandomNumber(1, 5),
       guests: getRandomNumber(1, 5),
       checkin: getRandomNumber(12, 14) + ':00',
       checkout: getRandomNumber(12, 14) + ':00',
-      features: createRandonLengthArray(allFeatures),
+      features: getRandomElemets(allFeatures, 2),
       description: 'Прекрасный вид на набережную',
-      photos: createRandonLengthArray(allPhotos),
-    }
-    return offer;
+      photos: getRandomElemets(allPhotos),
+    },
+
+    location: {
+      x: randomLocation.x,
+      y: randomLocation.y,
+    },
   };
 
-  temporaryData.push(createOffer());
+  return announcement;
+}
 
 
-  // Третий обьект: Location
+const createTemporaryData = () => {
+  const temporaryData = [];
 
-  const location = {
-    x: randomLocation.x,
-    y: randomLocation.y,
-  };
+  for (let i = 0; i < 10; i++) {
+    const announcement = createAnnouncement();
+    temporaryData.push(announcement);
+  }
 
-  temporaryData.push(location);
 
   return temporaryData;
 }
