@@ -40,7 +40,7 @@ const createAnnouncement = () => {
 
   const announcement = {
     author: {
-      avatar: `img/avatars/user${getAvatarRandomNumber(1, 12)}.png`,
+      avatar: `img/avatars/user${getAvatarRandomNumber(1, 8)}.png`,
     },
 
     offer: {
