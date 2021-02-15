@@ -48,18 +48,16 @@ const createAnnouncement = () => {
 }
 
 
-const createTemporaryData = () => {
+const createTemporaryData = (quantity) => {
   const temporaryData = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < quantity; i++) {
     const announcement = createAnnouncement();
     temporaryData.push(announcement);
   }
 
 
   return temporaryData;
-}
+};
 
-const temporaryData = createTemporaryData();
-
-export { temporaryData };
+export { createTemporaryData };

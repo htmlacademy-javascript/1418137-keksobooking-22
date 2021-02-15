@@ -1,3 +1,3 @@
-import { temporaryData } from './temporary-data.js';
+import { createTemporaryData } from './create-temporary-data.js';
 
-console.log(temporaryData);
+createTemporaryData(10);
