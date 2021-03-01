@@ -14,7 +14,7 @@ const createAnnouncement = () => {
     x: getRandomNumber(35.65000, 35.70000, 5),
     y: getRandomNumber(139.70000, 139.80000, 5),
   };
-
+  const checkIn = getRandomNumber(12, 14) + ':00';
   const allTypeHouse = ['palace', 'flat', 'house', 'bungalow'];
   const allFeatures = ['wifi', 'dishwasher', 'parking', 'washer', 'elevator', 'conditioner'];
   const allPhotos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
@@ -31,8 +31,8 @@ const createAnnouncement = () => {
       type: getRandomElemets(allTypeHouse, 1).pop(),
       rooms: getRandomNumber(1, 5),
       guests: getRandomNumber(1, 5),
-      checkin: getRandomNumber(12, 14) + ':00',
-      checkout: getRandomNumber(12, 14) + ':00',
+      checkin: checkIn,
+      checkout: checkIn,
       features: getRandomElemets(allFeatures, 2),
       description: 'Прекрасный вид на набережную',
       photos: getRandomElemets(allPhotos),
