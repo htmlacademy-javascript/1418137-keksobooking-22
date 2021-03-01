@@ -11,23 +11,20 @@ const addDataInTemplate = (classTemplateElement, data, adElementTemplate) => {
 };
 
 const renameRooms = data => {
-  if (data % 10 === 1 && data != 11) {
+  if (data % 10 === 1 && data !== 11) {
     return data + ' комната';
-  } else {
-    if (2 <= (data % 10) <= 4) {
-      return data + ' комнаты';
-    } else {
-      return data + ' комнат';
-    }
   }
+  if (data % 10 >= 5 || data % 10 === 0 || data === 11) {
+    return data + ' комнат';
+  }
+  return data + ' комнаты';
 };
 
 const renameGuests = data => {
   if (data % 10 === 1 && data != 11) {
     return data + ' гостя';
-  } else {
-    return data + ' гостей';
   }
+  return data + ' гостей';
 };
 
 const renameTypeHouse = {
@@ -57,13 +54,8 @@ const render = ad => {
   adElement.querySelector('.popup__text--address').textContent = addDataInTemplate('.popup__text--address', ad.offer.address, adElement);
   adElement.querySelector('.price').textContent = addDataInTemplate('.popup__text--price', ad.offer.price, adElement);
   adElement.querySelector('.popup__type').textContent = renameTypeHouse[ad.offer.type];
-
-  adElement.querySelector('.number-of-rooms').textContent = renameRooms(addDataInTemplate('.popup__text--capacity', ad.offer.rooms, adElement));
-  adElement.querySelector('.number-of-guests').textContent = renameGuests(addDataInTemplate('.popup__text--capacity', ad.offer.guests, adElement));
-
-  adElement.querySelector('.time-checkin').textContent = addDataInTemplate('.popup__text--time', ad.offer.checkin, adElement);
-  adElement.querySelector('.time-checkout').textContent = addDataInTemplate('.popup__text--time', ad.offer.checkout, adElement);
-
+  adElement.querySelector('.popup__text--capacity').textContent = renameRooms(addDataInTemplate('.popup__text--capacity', ad.offer.rooms, adElement)) + ' для ' + renameGuests(addDataInTemplate('.popup__text--capacity', ad.offer.guests, adElement));
+  adElement.querySelector('.popup__text--time').textContent = 'Заезд после ' + addDataInTemplate('.popup__text--time', ad.offer.checkin, adElement) + ', выезд до ' + addDataInTemplate('.popup__text--time', ad.offer.checkout, adElement);
   adElement.querySelector('.popup__description').textContent = addDataInTemplate('.popup__description', ad.offer.description, adElement);
   showImages(ad.offer.photos, adElement);
 
