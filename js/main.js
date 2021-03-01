@@ -1,3 +1,5 @@
 import { createTemporaryData } from './create-temporary-data.js';
+import { render } from './popup.js';
 
-createTemporaryData(10);
+const similarAds = createTemporaryData(1);
+render(similarAds[0]);
