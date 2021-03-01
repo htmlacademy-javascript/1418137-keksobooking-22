@@ -33,16 +33,16 @@ similarAds.forEach((ad) => {
     const photoTemlate = adElement.querySelector('.popup__photo');
     photosList.removeChild(photoTemlate);
 
-    for (var i = 0; i < photos.length; i++) {
+    for (let i = 0; i < photos.length; i++) {
       const photo = photoTemlate.cloneNode();
       photo.src = photos[i];
       photosList.appendChild(photo);
-    };
+    }
   };
 
   const addDataInTemplate = (classTemplateElement, data) => {
     const elementTemplate = adElement.querySelector(classTemplateElement);
-    if (data === "") {
+    if (data === '') {
       elementTemplate.classList.add('hidden');
     } else {
       return data;
