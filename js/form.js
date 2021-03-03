@@ -11,13 +11,13 @@ const priceTypeHouse = {
   palace: 10000,
 };
 
-inputTypeHouse.addEventListener('click', function () {
+inputTypeHouse.addEventListener('click', () => {
   inputPrice.placeholder = priceTypeHouse[inputTypeHouse.value];
   inputPrice.min = priceTypeHouse[inputTypeHouse.value];
 });
 
 for (let i = 0; i < inputsTime.length; i++) {
-  inputsTime[i].addEventListener('click', function () {
+  inputsTime[i].addEventListener('click', () => {
     inputsTime.forEach((section) => {
       section.value = inputsTime[i].value;
     })
