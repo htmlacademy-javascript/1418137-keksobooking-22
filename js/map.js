@@ -60,6 +60,7 @@ const mainMarker = L.marker(
 );
 mainMarker.addTo(map);
 
+adFormAdress.setAttribute('readonly', 'readonly');
 adFormAdress.value = mainMarker.getLatLng().lat.toFixed(5) + ', ' + mainMarker.getLatLng().lng.toFixed(5);
 mainMarker.on('moveend', (evt) => {
   adFormAdress.value = evt.target.getLatLng().lat.toFixed(5) + ', ' + evt.target.getLatLng().lng.toFixed(5);
@@ -79,15 +80,13 @@ import { createTemporaryData } from './create-temporary-data.js';
 import { render } from './popup.js';
 const numberSimilarAds = 4;
 const similarAds = createTemporaryData(numberSimilarAds);
-// // for (let i = 0; i < similarAds.length; i++) {
-// //   render(similarAds[i]);
-// // }
 
-for (let i = 0; i < similarAds.length; i++) {
+similarAds.forEach(ad => {
+  console.log(ad);
   const marker = L.marker(
     {
-      lat: similarAds[i].location.x,
-      lng: similarAds[i].location.y,
+      lat: ad.location.x,
+      lng: ad.location.y,
     },
     {
       draggable: true,
@@ -98,6 +97,33 @@ for (let i = 0; i < similarAds.length; i++) {
   marker
     .addTo(map)
     .bindPopup(
-      render(similarAds[i]),
+      render(ad),
+      {
+        keepInView: true,
+      },
     );
-}
+});
+
+
+
+// for (let i = 0; i < similarAds.length; i++) {
+//   const marker = L.marker(
+//     {
+//       lat: similarAds[i].location.x,
+//       lng: similarAds[i].location.y,
+//     },
+//     {
+//       draggable: true,
+//       icon: pinIcon,
+//     },
+//   );
+//   const popap = ;
+//   marker
+//     .addTo(map)
+//     .bindPopup(
+//       render(similarAds[i]),
+//       {
+//         keepInView: true,
+//       },
+//     );
+// }

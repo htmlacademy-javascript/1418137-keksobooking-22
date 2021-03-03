@@ -1,4 +1,3 @@
-const mapCanvas = document.querySelector('.map__canvas');
 const adTemplate = document.querySelector('#card');
 
 const addDataInTemplate = (classTemplateElement, data, adElementTemplate) => {
@@ -66,7 +65,7 @@ const render = ad => {
     adElement.querySelector(`.popup__feature--${item}`).style.display = 'inline-block';
   })
 
-  mapCanvas.appendChild(adElement);
+  return adElement;
 };
 
 export { render };
