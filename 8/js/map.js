@@ -1,3 +1,5 @@
+/* global L:readonly */
+
 const disableFormFields = (form, disabledClass) => {
   form.classList.add(disabledClass);
   for (let i = 0; i < form.children.length; i++) {
@@ -40,10 +42,10 @@ L.tileLayer(
 
 
 const mainPinIcon = L.icon({
-  iconUrl: '../../img/main-pin.svg',
+  iconUrl: 'img/main-pin.svg',
   iconSize: [40, 40],
   iconAnchor: [20, 40],
-  shadowUrl: '../../leaflet/images/marker-shadow.png',
+  shadowUrl: 'leaflet/images/marker-shadow.png',
   shadowSize: [35, 35],
   shadowAnchor: [10, 35],
 });
@@ -68,18 +70,19 @@ mainMarker.on('moveend', (evt) => {
 
 
 const pinIcon = L.icon({
-  iconUrl: '../../img/pin.svg',
+  iconUrl: 'img/pin.svg',
   iconSize: [30, 30],
   iconAnchor: [15, 30],
-  shadowUrl: '../../leaflet/images/marker-shadow.png',
+  shadowUrl: 'leaflet/images/marker-shadow.png',
   shadowSize: [30, 30],
   shadowAnchor: [8, 30],
 });
 
 import { createTemporaryData } from './create-temporary-data.js';
-import { render } from './popup.js';
+import { createPopup } from './create-popup.js';
 const numberSimilarAds = 4;
 const similarAds = createTemporaryData(numberSimilarAds);
+
 
 similarAds.forEach(ad => {
   const marker = L.marker(
@@ -96,7 +99,7 @@ similarAds.forEach(ad => {
   marker
     .addTo(map)
     .bindPopup(
-      render(ad),
+      createPopup(ad),
       {
         keepInView: true,
       },
