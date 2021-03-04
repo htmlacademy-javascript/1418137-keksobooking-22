@@ -45,7 +45,8 @@ const showImages = (photos, adElementTemplate) => {
   }
 };
 
-const render = ad => {
+const createPopup = ad => {
+
   const adElement = adTemplate.content.cloneNode(true);
 
   adElement.querySelector('.popup__avatar').setAttribute('src', ad.author.avatar);
@@ -68,4 +69,4 @@ const render = ad => {
   return adElement;
 };
 
-export { render };
+export { createPopup };
