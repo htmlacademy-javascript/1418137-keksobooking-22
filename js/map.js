@@ -30,7 +30,7 @@ const map = L.map('map-canvas')
   .setView({
     lat: 35.6895,
     lng: 139.69171,
-  }, 10);
+  }, 12);
 
 L.tileLayer(
   'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -83,7 +83,6 @@ import { createPopup } from './create-popup.js';
 const numberSimilarAds = 4;
 const similarAds = createTemporaryData(numberSimilarAds);
 
-
 similarAds.forEach(ad => {
   const marker = L.marker(
     {
@@ -91,7 +90,6 @@ similarAds.forEach(ad => {
       lng: ad.location.y,
     },
     {
-      draggable: true,
       icon: pinIcon,
     },
   );
@@ -105,27 +103,3 @@ similarAds.forEach(ad => {
       },
     );
 });
-
-
-
-// for (let i = 0; i < similarAds.length; i++) {
-//   const marker = L.marker(
-//     {
-//       lat: similarAds[i].location.x,
-//       lng: similarAds[i].location.y,
-//     },
-//     {
-//       draggable: true,
-//       icon: pinIcon,
-//     },
-//   );
-//   const popap = ;
-//   marker
-//     .addTo(map)
-//     .bindPopup(
-//       render(similarAds[i]),
-//       {
-//         keepInView: true,
-//       },
-//     );
-// }

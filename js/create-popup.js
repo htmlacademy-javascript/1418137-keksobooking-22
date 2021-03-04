@@ -66,7 +66,10 @@ const createPopup = ad => {
     adElement.querySelector(`.popup__feature--${item}`).style.display = 'inline-block';
   })
 
-  return adElement;
+  const popup = document.createElement('div');
+  popup.appendChild(adElement);
+
+  return popup.innerHTML;
 };
 
 export { createPopup };
