@@ -27,7 +27,7 @@ const map = L.map('map-canvas')
   })
   .setView({
     lat: 35.6895,
-    lng: 139.69171
+    lng: 139.69171,
   }, 10);
 
 L.tileLayer(
@@ -45,13 +45,13 @@ const mainPinIcon = L.icon({
   iconAnchor: [20, 40],
   shadowUrl: '../../leaflet/images/marker-shadow.png',
   shadowSize: [35, 35],
-  shadowAnchor: [10, 35]
+  shadowAnchor: [10, 35],
 });
 
 const mainMarker = L.marker(
   {
     lat: 35.6895,
-    lng: 139.69171
+    lng: 139.69171,
   },
   {
     draggable: true,
@@ -82,7 +82,6 @@ const numberSimilarAds = 4;
 const similarAds = createTemporaryData(numberSimilarAds);
 
 similarAds.forEach(ad => {
-  console.log(ad);
   const marker = L.marker(
     {
       lat: ad.location.x,
