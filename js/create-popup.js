@@ -1,4 +1,3 @@
-const mapCanvas = document.querySelector('.map__canvas');
 const adTemplate = document.querySelector('#card');
 
 const addDataInTemplate = (classTemplateElement, data, adElementTemplate) => {
@@ -46,7 +45,8 @@ const showImages = (photos, adElementTemplate) => {
   }
 };
 
-const render = ad => {
+const createPopup = ad => {
+
   const adElement = adTemplate.content.cloneNode(true);
 
   adElement.querySelector('.popup__avatar').setAttribute('src', ad.author.avatar);
@@ -66,7 +66,10 @@ const render = ad => {
     adElement.querySelector(`.popup__feature--${item}`).style.display = 'inline-block';
   })
 
-  mapCanvas.appendChild(adElement);
+  const popup = document.createElement('div');
+  popup.appendChild(adElement);
+
+  return popup.innerHTML;
 };
 
-export { render };
+export { createPopup };
